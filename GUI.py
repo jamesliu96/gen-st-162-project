@@ -8,13 +8,12 @@ def setButtons():
 	startBut.setSize(100, 50);
 	startBut.setLocation(100, 40);
 	c.add(startBut);
-	'''
 	global ontinueBut;
 	continueBut=swing.JButton("Continue", actionPerformed=changeColor);
+	
 	continueBut.setSize(100, 50);
 	continueBut.setLocation(600, 40);
 	c.add(continueBut);
-	'''
 	global confirmBut;
 	confirmBut=swing.JButton("I belive I'm right!!");
 	confirmBut.setSize(250, 100);
@@ -61,9 +60,22 @@ def setLabels():
 	toLabel03.setLocation(203, 310);
 	c.add(toLabel03);
 	'''
-	global questionLabel;
-	questionLabel=swing.JLabel("What is the value of Red?");
-	questionLabel.setSize(300, 50);
+def QuestionRepeater():
+	global questionLabel
+	global questionIsSet
+	y=randint(1,3);
+	if y==1:
+		str1="Green"
+	if y==2: 
+		str1="Red"
+	if y==3:
+		str1="Blue"
+	out="What is the value of "+ str1 + "?";
+	if questionIsSet:
+		questionLabel.setText(out)
+		return
+	questionLabel=swing.JLabel(out);
+	questionLabel.setSize(180, 50);
 	questionLabel.setLocation(110, 120)
 	c.add(questionLabel);
 '''
@@ -133,25 +145,25 @@ def setRadioButtons():
 	global radioBut1;
 	radioBut1=swing.JRadioButton("between 0 and 60");
 	radioBut1.setSize(150, 20);
-	radioBut1.setLocation(120, 210);
+	radioBut1.setLocation(50, 210);
 	butGroup.add(radioBut1);
 	c.add(radioBut1);
 	global radioBut2;
 	radioBut2=swing.JRadioButton("between 61 and 120");
 	radioBut2.setSize(150, 20);
-	radioBut2.setLocation(120, 230);
+	radioBut2.setLocation(50, 230);
 	butGroup.add(radioBut2);
 	c.add(radioBut2);
 	global radioBut3;
 	radioBut3=swing.JRadioButton("between 121 and 180");
 	radioBut3.setSize(150, 20);
-	radioBut3.setLocation(120, 250);
+	radioBut3.setLocation(50, 250);
 	butGroup.add(radioBut3);
 	c.add(radioBut3);
 	global radioBut4;
 	radioBut4=swing.JRadioButton("between 181 and 255");
 	radioBut4.setSize(150, 20);
-	radioBut4.setLocation(120, 270);
+	radioBut4.setLocation(50, 270);
 	butGroup.add(radioBut4);
 	c.add(radioBut4);
 
@@ -159,18 +171,20 @@ def changeColor(event):
 	#generateRandomRGB();
 	global RValue;
 	global GValue;
-	global BVlaue;
+	global BValue;
+	QuestionRepeater();
 	RValue=randint(0, 255);
 	GValue=randint(0, 255);
 	BValue=randint(0, 255);
 	colorDisplay.setBackground(awt.Color(RValue, GValue, BValue));
-
+	
 def startGame(event):
 	global playerScore;
 	playerScore=0;
+ 	
 
 
-frame=swing.JFrame("mini_project_04");
+frame=swing.JFrame("project_03");
 c=frame.getContentPane();
 #swing.JButton startBut, continueBut, confirmBut;
 #swing.JLabel playerNumLabel, RLabel, BLabel, GLabel, toLabel01, toLabel02, toLabel03;
@@ -184,11 +198,11 @@ frame.setSize(826, 581);
 c.setLayout(None);
 setButtons(); setLabels(); 
 #setComboBox(); 
+QuestionRepeater()
+questionIsSet = True
 setTextArea(); setRadioButtons();
 #setTextFild();
 setPanel();
 frame.setVisible(True);
 		
-
-
 
