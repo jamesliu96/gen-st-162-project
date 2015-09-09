@@ -4,9 +4,9 @@ from random import randint
 
 def setButtons():
 	global startBut
-	startBut=swing.JButton("Start!!");
-	startBut.setSize(69, 27);
-	startBut.setLocation(160, 40);
+	startBut=swing.JButton("Start!!", actionPerformed=startGame);
+	startBut.setSize(100, 50);
+	startBut.setLocation(100, 40);
 	c.add(startBut);
 	global ontinueBut;
 	continueBut=swing.JButton("Continue", actionPerformed=changeColor);
@@ -20,13 +20,14 @@ def setButtons():
 	c.add(confirmBut);
 
 def setLabels():
+	'''
 	global playerNumLabel;
 	playerNumLabel=swing.JLabel("Players: ");
 	playerNumLabel.setSize(75, 20);
 	playerNumLabel.setLocation(80, 30);
 	#playerNumLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 	c.add(playerNumLabel);
-	'''
+	
 	global RLabel;
 	RLabel=swing.JLabel("Red value: ");
 	RLabel.setSize(73, 18);
@@ -63,7 +64,7 @@ def setLabels():
 	questionLabel.setSize(300, 50);
 	questionLabel.setLocation(110, 120)
 	c.add(questionLabel);
-
+'''
 def setComboBox():
 	global num;
 	num=["1", "2"];
@@ -72,7 +73,7 @@ def setComboBox():
 	playerNum.setSize(69, 27);
 	playerNum.setLocation(80, 50);
 	c.add(playerNum);
-
+'''
 def setTextArea():
 	global history;
 	history="Welcome to the game!!";
@@ -151,6 +152,7 @@ def setRadioButtons():
 	radioBut4.setLocation(120, 270);
 	butGroup.add(radioBut4);
 	c.add(radioBut4);
+
 def changeColor(event):
 	#generateRandomRGB();
 	global RValue;
@@ -160,6 +162,10 @@ def changeColor(event):
 	GValue=randint(0, 255);
 	BValue=randint(0, 255);
 	colorDisplay.setBackground(awt.Color(RValue, GValue, BValue));
+
+def startGame(event):
+	global playerScore;
+	playerScore=0;
 
 
 frame=swing.JFrame("mini_project_04");
@@ -174,7 +180,9 @@ c=frame.getContentPane();
 frame.setSize(826, 581);
 #frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE);
 c.setLayout(None);
-setButtons(); setLabels(); setComboBox(); setTextArea(); setRadioButtons();
+setButtons(); setLabels(); 
+#setComboBox(); 
+setTextArea(); setRadioButtons();
 #setTextFild();
 setPanel();
 frame.setVisible(True);
