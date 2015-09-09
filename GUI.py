@@ -58,6 +58,11 @@ def setLabels():
 	toLabel03.setLocation(203, 310);
 	c.add(toLabel03);
 	'''
+	global questionLabel;
+	questionLabel=swing.JLabel("What is the value of Red?");
+	questionLabel.setSize(300, 50);
+	questionLabel.setLocation(110, 120)
+	c.add(questionLabel);
 
 def setComboBox():
 	global num;
@@ -119,6 +124,27 @@ def setPanel():
 	colorDisplay.setBackground(awt.Color(255, 255, 255));
 	c.add(colorDisplay);
 
+def setRadioButtons():
+	global radioBut1;
+	radioBut1=swing.JRadioButton("between 0 and 60");
+	radioBut1.setSize(150, 20);
+	radioBut1.setLocation(120, 210);
+	c.add(radioBut1);
+	global radioBut2;
+	radioBut2=swing.JRadioButton("between 61 and 120");
+	radioBut2.setSize(150, 20);
+	radioBut2.setLocation(120, 230);
+	c.add(radioBut2);
+	global radioBut3;
+	radioBut3=swing.JRadioButton("between 121 and 180");
+	radioBut3.setSize(150, 20);
+	radioBut3.setLocation(120, 250);
+	c.add(radioBut3);
+	global radioBut4;
+	radioBut4=swing.JRadioButton("between 181 and 255");
+	radioBut4.setSize(150, 20);
+	radioBut4.setLocation(120, 270);
+	c.add(radioBut4);
 def changeColor(event):
 	#generateRandomRGB();
 	global RValue;
@@ -142,7 +168,7 @@ c=frame.getContentPane();
 frame.setSize(826, 581);
 #frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE);
 c.setLayout(None);
-setButtons(); setLabels(); setComboBox(); setTextArea();
+setButtons(); setLabels(); setComboBox(); setTextArea(); setRadioButtons();
 #setTextFild();
 setPanel();
 frame.setVisible(True);
