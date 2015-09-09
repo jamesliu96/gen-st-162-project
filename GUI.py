@@ -8,11 +8,13 @@ def setButtons():
 	startBut.setSize(100, 50);
 	startBut.setLocation(100, 40);
 	c.add(startBut);
+	'''
 	global ontinueBut;
 	continueBut=swing.JButton("Continue", actionPerformed=changeColor);
 	continueBut.setSize(100, 50);
 	continueBut.setLocation(600, 40);
 	c.add(continueBut);
+	'''
 	global confirmBut;
 	confirmBut=swing.JButton("I belive I'm right!!");
 	confirmBut.setSize(250, 100);
