@@ -155,7 +155,7 @@ def setRadioButtons():
 	butGroup.add(radioBut4);
 	c.add(radioBut4);
 
-def changeColor(event):
+def changeColor():
 	#generateRandomRGB();
 	global RValue;
 	global GValue;
@@ -166,26 +166,27 @@ def changeColor(event):
 	colorDisplay.setBackground(awt.Color(RValue, GValue, BValue));
 
 def startGame(event):
-	global playerScore;
+	global playerScore
 	playerScore=0;
-	changeColor(event);
+	changeColor();
 
 def oneRound(event):
-	if radioBut1.isSelected():
-		if RValue>=0 & RValue<=60:
-			playerScore+=1;
-	elif radioBut2.isSelected():
-		if RValue>60 & RValue<=120:
-			playerScore+=1;
-	elif radioBut3.isSelected():
-		if RValue>120 & RValue<=180:
-			playerScore+=1;
-	elif radioBut4.isSelected():
-		if RValue>180 & RValue<=255:
-			playerScore+=1;
-	history+="\nScore: "+playerScore;
-	gamingProcess.setText(history);
-	changeColor(event);
+	print "ASS";
+	global playerScore
+	if radioBut1.isSelected() & RValue>=0 & RValue<=60:
+		playerScore=playerScore+1
+	elif radioBut2.isSelected() & RValue>60 & RValue<=120:
+		playerScore=playerScore+1
+	elif radioBut3.isSelected() & RValue>120 & RValue<=180:
+		playerScore=playerScore+1
+	elif radioBut4.isSelected() & RValue>180 & RValue<=255:
+		playerScore=playerScore+1
+	else:
+		print "aaaa"
+	history+="\nScore: "+str(playerScore);
+	gamingProcess.text=history;
+	changeColor();
+	print "ASSSSS"
 
 
 
