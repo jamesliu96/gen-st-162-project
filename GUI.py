@@ -26,6 +26,7 @@ def setLabels():
 	playerNumLabel.setLocation(80, 30);
 	#playerNumLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 	c.add(playerNumLabel);
+	'''
 	global RLabel;
 	RLabel=swing.JLabel("Red value: ");
 	RLabel.setSize(73, 18);
@@ -56,6 +57,7 @@ def setLabels():
 	toLabel03.setSize(17, 24);
 	toLabel03.setLocation(203, 310);
 	c.add(toLabel03);
+	'''
 
 def setComboBox():
 	global num;
@@ -75,6 +77,7 @@ def setTextArea():
 	gamingProcess.setLocation(320, 30);
 	c.add(gamingProcess);
 
+'''
 def setTextFild():
 	global RValueStart;
 	RValueStart=swing.JTextField();
@@ -106,6 +109,7 @@ def setTextFild():
 	BValueEnd.setSize(50, 25);
 	BValueEnd.setLocation(223, 310);
 	c.add(BValueEnd);
+'''
 
 def setPanel():
 	global colorDisplay;
