@@ -1,5 +1,6 @@
 import javax.swing as swing;
 import java.awt as awt;
+from random import randint
 
 def setButtons():
 	global startBut
@@ -8,7 +9,7 @@ def setButtons():
 	startBut.setLocation(160, 40);
 	c.add(startBut);
 	global ontinueBut;
-	continueBut=swing.JButton("Continue");
+	continueBut=swing.JButton("Continue", actionPerformed=changeColor);
 	continueBut.setSize(100, 50);
 	continueBut.setLocation(600, 40);
 	c.add(continueBut);
@@ -17,6 +18,7 @@ def setButtons():
 	confirmBut.setSize(250, 100);
 	confirmBut.setLocation(50, 350);
 	c.add(confirmBut);
+
 def setLabels():
 	global playerNumLabel;
 	playerNumLabel=swing.JLabel("Players: ");
@@ -112,6 +114,18 @@ def setPanel():
 	colorDisplay.setLocation(400, 150);
 	colorDisplay.setBackground(awt.Color(255, 255, 255));
 	c.add(colorDisplay);
+
+def changeColor(event):
+	#generateRandomRGB();
+	global RValue;
+	global GValue;
+	global BVlaue;
+	RValue=randint(0, 255);
+	GValue=randint(0, 255);
+	BValue=randint(0, 255);
+	colorDisplay.setBackground(awt.Color(RValue, GValue, BValue));
+
+
 frame=swing.JFrame("mini_project_04");
 c=frame.getContentPane();
 #swing.JButton startBut, continueBut, confirmBut;
@@ -122,7 +136,7 @@ c=frame.getContentPane();
 #swing.JPanel colorDisplay;
 #String history;
 frame.setSize(826, 581);
-frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE);
+#frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE);
 c.setLayout(None);
 setButtons(); setLabels(); setComboBox(); setTextArea();
 setTextFild(); setPanel();
