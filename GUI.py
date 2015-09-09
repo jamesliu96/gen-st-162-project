@@ -16,7 +16,7 @@ def setButtons():
 	c.add(continueBut);
 	'''
 	global confirmBut;
-	confirmBut=swing.JButton("I belive I'm right!!");
+	confirmBut=swing.JButton("I belive I'm right!!", actionPerformed=oneRound);
 	confirmBut.setSize(250, 100);
 	confirmBut.setLocation(50, 350);
 	c.add(confirmBut);
@@ -159,7 +159,7 @@ def changeColor(event):
 	#generateRandomRGB();
 	global RValue;
 	global GValue;
-	global BVlaue;
+	global BValue;
 	RValue=randint(0, 255);
 	GValue=randint(0, 255);
 	BValue=randint(0, 255);
@@ -168,6 +168,25 @@ def changeColor(event):
 def startGame(event):
 	global playerScore;
 	playerScore=0;
+	changeColor(event);
+
+def oneRound(event):
+	if radioBut1.isSelected():
+		if RValue>=0 & RValue<=60:
+			playerScore+=1;
+	elif radioBut2.isSelected():
+		if RValue>60 & RValue<=120:
+			playerScore+=1;
+	elif radioBut3.isSelected():
+		if RValue>120 & RValue<=180:
+			playerScore+=1;
+	elif radioBut4.isSelected():
+		if RValue>180 & RValue<=255:
+			playerScore+=1;
+	history+="\nScore: "+playerScore;
+	gamingProcess.setText(history);
+	changeColor(event);
+
 
 
 frame=swing.JFrame("mini_project_04");
