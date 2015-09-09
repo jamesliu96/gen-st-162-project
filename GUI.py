@@ -125,25 +125,31 @@ def setPanel():
 	c.add(colorDisplay);
 
 def setRadioButtons():
+	global butGroup
+	butGroup=swing.ButtonGroup();
 	global radioBut1;
 	radioBut1=swing.JRadioButton("between 0 and 60");
 	radioBut1.setSize(150, 20);
 	radioBut1.setLocation(120, 210);
+	butGroup.add(radioBut1);
 	c.add(radioBut1);
 	global radioBut2;
 	radioBut2=swing.JRadioButton("between 61 and 120");
 	radioBut2.setSize(150, 20);
 	radioBut2.setLocation(120, 230);
+	butGroup.add(radioBut2);
 	c.add(radioBut2);
 	global radioBut3;
 	radioBut3=swing.JRadioButton("between 121 and 180");
 	radioBut3.setSize(150, 20);
 	radioBut3.setLocation(120, 250);
+	butGroup.add(radioBut3);
 	c.add(radioBut3);
 	global radioBut4;
 	radioBut4=swing.JRadioButton("between 181 and 255");
 	radioBut4.setSize(150, 20);
 	radioBut4.setLocation(120, 270);
+	butGroup.add(radioBut4);
 	c.add(radioBut4);
 def changeColor(event):
 	#generateRandomRGB();
