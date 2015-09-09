@@ -143,7 +143,8 @@ frame.setSize(826, 581);
 #frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE);
 c.setLayout(None);
 setButtons(); setLabels(); setComboBox(); setTextArea();
-setTextFild(); setPanel();
+#setTextFild();
+setPanel();
 frame.setVisible(True);
 		
 
