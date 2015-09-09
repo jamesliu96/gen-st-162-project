@@ -3,21 +3,21 @@ import java.awt as awt;
 from random import randint
 
 def setButtons():
-    global startBut
-    startBut = swing.JButton("Start!!")
-    startBut.setSize(69, 27)
-    startBut.setLocation(160, 40)
-    c.add(startBut)
-    global ontinueBut
-    continueBut = swing.JButton("Continue", actionPerformed=changeColor)
-    continueBut.setSize(100, 50)
-    continueBut.setLocation(600, 40)
-    c.add(continueBut)
-    global confirmBut
-    confirmBut = swing.JButton("Confirm")
-    confirmBut.setSize(250, 100)
-    confirmBut.setLocation(50, 350)
-    c.add(confirmBut)
+    global startBtn
+    startBtn = swing.JButton("Start", actionPerformed=changeTime)
+    startBtn.setSize(69, 27)
+    startBtn.setLocation(160, 40)
+    c.add(startBtn)
+    global continueBtn
+    continueBtn = swing.JButton("Continue", actionPerformed=changeColor)
+    continueBtn.setSize(100, 50)
+    continueBtn.setLocation(600, 40)
+    c.add(continueBtn)
+    global confirmBtn
+    confirmBtn = swing.JButton("Confirm")
+    confirmBtn.setSize(250, 100)
+    confirmBtn.setLocation(50, 350)
+    c.add(confirmBtn)
 
 def setLabels():
     global playerNumLabel
@@ -55,6 +55,11 @@ def setLabels():
     toLabel03.setSize(17, 24)
     toLabel03.setLocation(203, 310)
     c.add(toLabel03)
+    global countdownLabel
+    countdownLabel = swing.JLabel("30 seconds")
+    countdownLabel.setSize(75, 20)
+    countdownLabel.setLocation(100, 500)
+    c.add(countdownLabel)
 
 def setComboBox():
     global num
@@ -114,19 +119,32 @@ def setPanel():
     colorDisplay.setBackground(awt.Color(255, 255, 255))
     c.add(colorDisplay)
 
-def changeColor(event):
+def changeColor(e):
     global RValue
     global GValue
     global BVlaue
-    RValue=randint(0, 255)
-    GValue=randint(0, 255)
-    BValue=randint(0, 255)
+    RValue = randint(0, 255)
+    GValue = randint(0, 255)
+    BValue = randint(0, 255)
     colorDisplay.setBackground(awt.Color(RValue, GValue, BValue))
+
+def startTrigger(event):
+    global t
+    t = 30
+    global timer
+    timer = swing.Timer(1000, None, actionPerformed=changeTime)
+    timer.start()
+
+def changeTime():
+    global t
+    t -= 1
+    countdownLabel.setText('%d seconds' % t)
 
 frame = swing.JFrame("Color Guess")
 c = frame.getContentPane()
 frame.setSize(826, 581)
 c.setLayout(None)
+tRange = xrange(30, 1, -3)
 setButtons()
 setLabels()
 setComboBox()
