@@ -9,9 +9,10 @@ def setButtons():
 	startBut.setLocation(100, 40)
 	c.add(startBut)
 	global confirmBut
-	confirmBut=swing.JButton("I belive I'm right!!", actionPerformed=oneRound)
+	confirmBut=swing.JButton("I believe I'm right!!", actionPerformed=oneRound)
 	confirmBut.setSize(250, 100)
 	confirmBut.setLocation(50, 350)
+	confirmBut.setEnabled(False)
 	c.add(confirmBut)
 
 def setLabels():
@@ -86,6 +87,7 @@ def startGame(event):
 	global score
 	score=0
 	startBut.setEnabled(False)
+	confirmBut.setEnabled(True)
 
 def oneRound(event):
 	if radioBut1.isSelected() and values[serial]>=0 and values[serial]<=60:
