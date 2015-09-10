@@ -1,4 +1,3 @@
-
 import javax.swing as swing
 import java.awt as awt
 from random import randint
@@ -111,35 +110,33 @@ def oneRound(event):
     else:
         fail()
 
-
 def addScore():
     global wrongAnswers
     if wrongAnswers <= 0:
-        gamingProcess.setText("GAME OVER\nYou guessed wrong 20 times\nFinal Score: "+str(score))
+        gamingProcess.setText("GAME OVER\nYou guessed wrong 20 times\nFinal Score: " + str(score))
     else:
         global score
-        score=score+1
-        gamingProcess.setText("Good for you!! The value is "+str(values[serial])+"\nScore: "+str(score))
+        score = score + 1
+        gamingProcess.setText("Good for you!! The value is " + str(values[serial]) + "\nScore: " + str(score))
         generateRGB()
         changeProblem()
 
 def fail():
     global wrongAnswers
     global score
-    wrongAnswers = wrongAnswers-1
+    wrongAnswers = wrongAnswers - 1
     if wrongAnswers <= 0:
-        gamingProcess.setText("GAME OVER\nYou guessed wrong 20 times\nFinal Score: "+str(score))
+        gamingProcess.setText("GAME OVER\nYou guessed wrong 20 times\nFinal Score: " + str(score))
         startBut.setEnabled(True)
         confirmBut.setEnabled(False)
     else:
         global score
-        minus=randint(0, 1)
-        score=score-minus
-        if minus==1:
-            gamingProcess.setText("Too bad, Score-1\nScore: "+str(score))
+        minus = randint(0, 1)
+        score = score - minus
+        if minus == 1:
+            gamingProcess.setText("Too bad, Score -1\nScore: " + str(score))
         else:
-            gamingProcess.setText("Still wrong, but no points lost!!\nScore: "+str(score))
-
+            gamingProcess.setText("Still wrong, but no points lost!!\nScore: " + str(score))
 
 def quitGame(event):
     gameSummery()
@@ -149,7 +146,6 @@ def gameSummery():
     confirmBut.setEnabled(False)
     startBut.setEnabled(True)
     gamingProcess.setText("Game ended!!\nTotal Score: " + str(score))
-
 
 frame = swing.JFrame("mini_project_04")
 c = frame.getContentPane()
