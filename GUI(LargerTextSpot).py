@@ -7,7 +7,7 @@ def setButtons():
     global startBut
     startBut = swing.JButton("Start!!", actionPerformed=startGame)
     startBut.setSize(100, 50)
-    startBut.setLocation(100, 40)
+    startBut.setLocation(100, 35)
     c.add(startBut)
     global confirmBut
     confirmBut = swing.JButton("I believe I'm right!!", actionPerformed=oneRound)
@@ -34,9 +34,10 @@ def setTextArea():
     global gamingProcess
     gamingProcess = swing.JTextArea(history)
     gamingProcess.setSize(310, 60)
-    gamingProcess.setLocation(220, 30)
+    gamingProcess.setLocation(220, 35)
     gamingProcess.setLineWrap(True)
     gamingProcess.setEditable(False)
+    gamingProcess.setBackground(awt.Color(238, 238, 238))
     c.add(gamingProcess)
 
 
