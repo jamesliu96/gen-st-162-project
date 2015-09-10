@@ -67,38 +67,46 @@ def setRadioButtons():
 	butGroup.add(radioBut4)
 	c.add(radioBut4)
 
-def changeColor():
-	#generateRandomRGB()
-	global RValue
-	global GValue
-	global BValue
-	RValue=randint(0, 255)
-	GValue=randint(0, 255)
-	BValue=randint(0, 255)
-	colorDisplay.setBackground(awt.Color(RValue, GValue, BValue))
+def generateRGB():
+	global values
+	values=[randint(0, 255), randint(0, 255), randint(0, 255)]
+	colorDisplay.setBackground(awt.Color(values[0], values[1], values[2]))
+
+def changeProblem():
+	RGB=["Red", "Green", "Blue"]
+	global serial
+	serial=randint(0, 2)
+	questionLabel.text="What is the value of "+RGB[serial]+"?"
 
 def startGame(event):
-	global playerScore
-	playerScore=0
-	changeColor()
+	generateRGB()
+	changeProblem()
+	global score
+	score=0
 
 def oneRound(event):
-	print "ASS"
-	global playerScore
-	if radioBut1.isSelected() & (RValue>=0 & RValue<=60):
-		playerScore=playerScore+1
-	elif radioBut2.isSelected() & (RValue>60 & RValue<=120):
-		playerScore=playerScore+1
-	elif radioBut3.isSelected() & (RValue>120 & RValue<=180):
-		playerScore=playerScore+1
-	elif radioBut4.isSelected() & (RValue>180 & RValue<=255):
-		playerScore=playerScore+1
+	global score
+	if radioBut1.isSelected() & values[serial]>=0 & values[serial]<=60:
+		addScore()
+	elif radioBut2.isSelected() & values[serial]>60 & values[serial]<=120:
+		addScore()
+	elif radioBut3.isSelected() & values[serial]>120 & values[serial]<=180:
+		addScore()
+	elif radioBut4.isSelected() & values[serial]>180 & values[serial]<=255:
+		addScore()
 	else:
-		print "aaaa"
-	history+="\nScore: "+str(playerScore)
+		print "a"
+
+def addScore():
+	global score
+	score=score+1
+	generateRGB()
+	changeProblem()
+	global history
+	history="Score: "+str(score)
 	gamingProcess.text=history
-	changeColor()
-	print "ASSSSS"
+
+
 
 
 
