@@ -147,7 +147,7 @@ def gameSummery():
     startBut.setEnabled(True)
     gamingProcess.setText("Game ended!!\nTotal Score: " + str(score))
 
-frame = swing.JFrame("mini_project_04")
+frame = swing.JFrame("Color Guess v1.0.0")
 c = frame.getContentPane()
 frame.setSize(826, 581)
 c.setLayout(None)
