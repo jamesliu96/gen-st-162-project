@@ -86,16 +86,22 @@ def startGame(event):
 
 def oneRound(event):
 	global score
-	if radioBut1.isSelected() & values[serial]>=0 & values[serial]<=60:
+	global values
+	if radioBut1.isSelected() & int(values[serial])>=0 & int(values[serial])<=60:
 		addScore()
-	elif radioBut2.isSelected() & values[serial]>60 & values[serial]<=120:
+		print 1
+	elif radioBut2.isSelected() & int(values[serial])>60 & int(values[serial])<=120:
 		addScore()
-	elif radioBut3.isSelected() & values[serial]>120 & values[serial]<=180:
+		print 2
+	elif radioBut3.isSelected() & int(values[serial])>120 & int(values[serial])<=180:
 		addScore()
-	elif radioBut4.isSelected() & values[serial]>180 & values[serial]<=255:
+		print 3
+	elif radioBut4.isSelected() & int(values[serial])>180 & int(values[serial])<=255:
 		addScore()
+		print 4
 	else:
-		print "a"
+		print "A"
+
 
 def addScore():
 	global score
@@ -105,8 +111,6 @@ def addScore():
 	global history
 	history="Score: "+str(score)
 	gamingProcess.text=history
-
-
 
 
 
