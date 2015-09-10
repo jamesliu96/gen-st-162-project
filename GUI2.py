@@ -28,6 +28,8 @@ def setTextArea():
 	gamingProcess=swing.JTextArea(history)
 	gamingProcess.setSize(250, 60)
 	gamingProcess.setLocation(320, 30)
+	gamingProcess.setLineWrap(True)
+	gamingProcess.setEditable(False)
 	c.add(gamingProcess)
 
 
@@ -83,6 +85,7 @@ def startGame(event):
 	changeProblem()
 	global score
 	score=0
+	startBut.setEnabled(False)
 
 def oneRound(event):
 	if radioBut1.isSelected() and values[serial]>=0 and values[serial]<=60:
@@ -101,7 +104,7 @@ def oneRound(event):
 def addScore():
 	global score
 	score=score+1
-	gamingProcess.text="Good for you!! The value is "+str(values[serial])+"\nScore: "+str(score)
+	gamingProcess.setText("Good for you!! The value is "+str(values[serial])+"\nScore: "+str(score))
 	generateRGB()
 	changeProblem()
 
@@ -110,9 +113,9 @@ def fail():
 	minus=randint(0, 1)
 	score=score-minus
 	if minus==1:
-		gamingProcess.text="Too bad, Score-1\nScore: "+str(score)
+		gamingProcess.setText("Too bad, Score-1\nScore: "+str(score))
 	else:
-		gamingProcess.text="Still wrong, but no points lost!!\nScore: "+str(score)
+		gamingProcess.setText("Still wrong, but no points lost!!\nScore: "+str(score))
 
 
 frame=swing.JFrame("mini_project_04")
