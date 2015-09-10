@@ -29,7 +29,7 @@ def setLabels():
 
 def setTextArea():
     global history
-    history = "Welcome to the game!"
+    history = "Welcome to the game! If you guess incorectly 20 times then the game will end!"
     global gamingProcess
     gamingProcess = swing.JTextArea(history)
     gamingProcess.setSize(250, 60)
@@ -37,7 +37,6 @@ def setTextArea():
     gamingProcess.setLineWrap(True)
     gamingProcess.setEditable(False)
     c.add(gamingProcess)
-
 
 def setPanel():
     global colorDisplay
@@ -87,7 +86,7 @@ def changeProblem():
     questionLabel.text = "What is the value of " + RGB[serial] + "?"
 
 def startGame(event):
-    gamingProcess.setText("Welcome to the game!")
+    gamingProcess.setText("Game started! You have 20 chances. Good luck!")
     generateRGB()
     changeProblem()
     global score
@@ -107,49 +106,49 @@ def oneRound(event):
     else:
         fail()
 
-
 def addScore():
-    global score
-    score = score + 1
-    gamingProcess.setText("Good for you!! The value is " + str(values[serial]) + "\nScore: " + str(score))
-    generateRGB()
-    changeProblem()
+    global wrongAnswers, score
+    if wrongAnswers <= 0:
+        gamingProcess.setText("GAME OVER!\nYou guessed wrong 20 times!\nFinal Score: " + str(score))
+    else:
+        score = score + 1
+        gamingProcess.setText("Good for you!! The value is " + str(values[serial]) + "\nScore: " + str(score))
+        generateRGB()
+        changeProblem()
 
 def fail():
-    global score
-    minus = randint(0, 1)
-    score = score - minus
-    if minus == 1:
-        gamingProcess.setText("Too bad, Score-1\nScore: " + str(score))
+    global wrongAnswers, score
+    wrongAnswers = wrongAnswers-1
+    if wrongAnswers <= 0:
+        gamingProcess.setText("GAME OVER\nYou guessed wrong 20 times\nFinal Score: " + str(score))
     else:
-        gamingProcess.setText("Still wrong, but no points lost!!\nScore: " + str(score))
+        minus = randint(0, 1)
+        score = score - minus
+        if minus == 1:
+            gamingProcess.setText("Too bad, Score-1\nScore: " + str(score))
+        else:
+            gamingProcess.setText("Still wrong, but no points lost!!\nScore: " + str(score))
 
 def quitGame(event):
     gameSummery()
 
 def gameSummery():
-    global score
-    confirmBut.setEnabled(False)
-    startBut.setEnabled(True)
-    gamingProcess.setText("Game ended!\nTotal Score: " + str(score))
+    global wrongAnswers, score
+    wrongAnswers = wrongAnswers-1
+    if wrongAnswers <= 0:
+        gamingProcess.setText("GAME OVER\nYou guessed wrong 20 times\nFinal Score: " + str(score))
+    else:
+        confirmBut.setEnabled(False)
+        startBut.setEnabled(True)
+        gamingProcess.setText("Game ended!\nTotal Score: " + str(score))
 
-frame = swing.JFrame("mini_project_04")
+frame = swing.JFrame("Color Guess v1.0.0")
 c = frame.getContentPane()
-#swing.JButton startBut, continueBut, confirmBut
-#swing.JLabel playerNumLabel, RLabel, BLabel, GLabel, toLabel01, toLabel02, toLabel03
-#swing.JComboBox playerNum
-#swing.JTextArea gamingProcess
-#swing.JTextField RValueStart, GValueStart, BValueStart, RValueEnd, GValueEnd, BValueEnd
-#swing.JPanel colorDisplay
-#String history
 frame.setSize(826, 581)
-#frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE)
 c.setLayout(None)
 setButtons()
-setLabels() 
-#setComboBox() 
+setLabels()
 setTextArea()
 setRadioButtons()
-#setTextFild()
 setPanel()
 frame.setVisible(True)
