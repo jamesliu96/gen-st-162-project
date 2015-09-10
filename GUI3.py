@@ -4,18 +4,18 @@ from random import randint
 
 def setButtons():
     global startBut
-    startBut = swing.JButton("Start!!", actionPerformed=startGame)
+    startBut = swing.JButton("Start!", actionPerformed=startGame)
     startBut.setSize(100, 50)
     startBut.setLocation(100, 40)
     c.add(startBut)
     global confirmBut
-    confirmBut = swing.JButton("I believe I'm right!!", actionPerformed=oneRound)
+    confirmBut = swing.JButton("I believe I'm right!", actionPerformed=oneRound)
     confirmBut.setSize(250, 100)
     confirmBut.setLocation(50, 350)
     confirmBut.setEnabled(False)
     c.add(confirmBut)
     global quitBut
-    quitBut = swing.JButton("QUIT!?", actionPerformed=quitGame)
+    quitBut = swing.JButton("QUIT?", actionPerformed=quitGame)
     quitBut.setSize(100, 50)
     quitBut.setLocation(610, 35)
     c.add(quitBut)
@@ -29,7 +29,7 @@ def setLabels():
 
 def setTextArea():
     global history
-    history = "Welcome to the game!!"
+    history = "Welcome to the game!"
     global gamingProcess
     gamingProcess = swing.JTextArea(history)
     gamingProcess.setSize(250, 60)
@@ -87,6 +87,7 @@ def changeProblem():
     questionLabel.text = "What is the value of " + RGB[serial] + "?"
 
 def startGame(event):
+    gamingProcess.setText("Welcome to the game!")
     generateRGB()
     changeProblem()
     global score
@@ -130,8 +131,7 @@ def gameSummery():
     global score
     confirmBut.setEnabled(False)
     startBut.setEnabled(True)
-    gamingProcess.setText("Game ended!!\nTotal Score: " + str(score))
-
+    gamingProcess.setText("Game ended!\nTotal Score: " + str(score))
 
 frame = swing.JFrame("mini_project_04")
 c = frame.getContentPane()
@@ -145,9 +145,11 @@ c = frame.getContentPane()
 frame.setSize(826, 581)
 #frame.setDefaultCloseOperation(swing.JFrame.EXIT_ON_CLOSE)
 c.setLayout(None)
-setButtons(); setLabels() 
+setButtons()
+setLabels() 
 #setComboBox() 
-setTextArea(); setRadioButtons()
+setTextArea()
+setRadioButtons()
 #setTextFild()
 setPanel()
 frame.setVisible(True)
