@@ -15,7 +15,7 @@ def setButtons():
 	confirmBut.setEnabled(False)
 	c.add(confirmBut)
 	global quitBut
-	quitBut=swing.JButton("QUIT!?")
+	quitBut=swing.JButton("QUIT!?", actionPerformed=quitGame)
 	quitBut.setSize(100, 50)
 	quitBut.setLocation(610, 35)
 	c.add(quitBut)
@@ -99,7 +99,6 @@ def oneRound(event):
 		addScore()
 	elif radioBut2.isSelected() and values[serial]>60 and values[serial]<=120:
 		addScore()
-		print 2
 	elif radioBut3.isSelected() and values[serial]>120 and values[serial]<=180:
 		addScore()
 	elif radioBut4.isSelected() and values[serial]>180 and values[serial]<=255:
@@ -123,6 +122,15 @@ def fail():
 		gamingProcess.setText("Too bad, Score-1\nScore: "+str(score))
 	else:
 		gamingProcess.setText("Still wrong, but no points lost!!\nScore: "+str(score))
+
+def quitGame(event):
+	gameSummery()
+
+def gameSummery():
+	global score
+	confirmBut.setEnabled(False)
+	startBut.setEnabled(True)
+	gamingProcess.setText("Game ended!!\nTotal Score: "+str(score))
 
 
 frame=swing.JFrame("mini_project_04")
