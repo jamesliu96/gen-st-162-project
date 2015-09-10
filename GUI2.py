@@ -85,33 +85,34 @@ def startGame(event):
 	score=0
 
 def oneRound(event):
-	global values
-	global serial
 	if radioBut1.isSelected() and values[serial]>=0 and values[serial]<=60:
 		addScore()
-		print radioBut1.isSelected()
-	elif radioBut2.isSelected() and int(values[serial])>60 and int(values[serial])<=120:
+	elif radioBut2.isSelected() and values[serial]>60 and values[serial]<=120:
 		addScore()
 		print 2
-	elif radioBut3.isSelected() and int(values[serial])>120 and int(values[serial])<=180:
+	elif radioBut3.isSelected() and values[serial]>120 and values[serial]<=180:
 		addScore()
-		print 3
-	elif radioBut4.isSelected() and int(values[serial])>180 and int(values[serial])<=255:
+	elif radioBut4.isSelected() and values[serial]>180 and values[serial]<=255:
 		addScore()
-		print 4
 	else:
-		print "A"
+		fail()
 
 
 def addScore():
 	global score
 	score=score+1
+	gamingProcess.text="Good for you!! The value is "+str(values[serial])+"\nScore: "+str(score)
 	generateRGB()
 	changeProblem()
-	global history
-	history="Score: "+str(score)
-	gamingProcess.text=history
 
+def fail():
+	global score
+	minus=randint(0, 1)
+	score=score-minus
+	if minus==1:
+		gamingProcess.text="Too bad, Score-1\nScore: "+str(score)
+	else:
+		gamingProcess.text="Still wrong, but no points lost!!\nScore: "+str(score)
 
 
 frame=swing.JFrame("mini_project_04")
