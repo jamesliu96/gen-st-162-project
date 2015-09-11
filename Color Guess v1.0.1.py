@@ -49,11 +49,11 @@ def setPanel():
     c.add(colorDisplay)
     global life
     life=[]
-    for i in range(0, 19):
+    for i in range(0, 20):
         life.append(swing.JPanel())
         life[i].setSize(10, 10)
         life[i].setLocation(220+i*20, 98)
-        life[i].setBackground(awt.Color(255, 0, 0))
+        life[i].setBackground(awt.Color(238, 238, 238))
         c.add(life[i])
 
 def setRadioButtons():
@@ -105,6 +105,8 @@ def startGame(event):
     score = 0
     startBut.setEnabled(False)
     confirmBut.setEnabled(True)
+    for i in range(0, 20):
+        life[i].setBackground(awt.Color(255, 0, 0))
 
 def oneRound(event):
     if radioBut1.isSelected() and values[serial] >= 0 and values[serial] <= 60:
