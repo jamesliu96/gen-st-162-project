@@ -98,7 +98,7 @@ def changeProblem():
         questionLabel.setForeground(awt.Color.RED)
         questionLabel.text = "What is the value of " + RGB[serial] + "?"
     elif serial == 1:
-        questionLabel.setForeground(awt.Color.DARK_GREEN)
+        questionLabel.setForeground(awt.Color(0, 200, 0))
         questionLabel.text = "What is the value of " + RGB[serial] + "?"
     elif serial == 2:
         questionLabel.setForeground(awt.Color.BLUE)
