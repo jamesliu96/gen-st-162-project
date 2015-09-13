@@ -98,24 +98,25 @@ def generateRGB():
     colorDisplay.setBackground(awt.Color(values[0], values[1], values[2]))
 
 def changeProblem():
-    RGB = ["Red", "Green", "Blue"]
+    question=[["Red", "Green", "Blue"], ["Hue", "Saturation", "Value"]]
     global serial
     global questionLabel
     serial = randint(0, 2)
     if serial == 0:
         questionLabel.setForeground(awt.Color.RED)
-        questionLabel.text = "What is the value of " + RGB[serial] + "?"
+        questionLabel.text = "What is the value of " + question[choice][serial] + "?"
     elif serial == 1:
         questionLabel.setForeground(awt.Color(0, 200, 0))
-        questionLabel.text = "What is the value of " + RGB[serial] + "?"
+        questionLabel.text = "What is the value of " + question[choice][serial] + "?"
     elif serial == 2:
         questionLabel.setForeground(awt.Color.BLUE)
-        questionLabel.text = "What is the value of " + RGB[serial] + "?"
+        questionLabel.text = "What is the value of " + question[choice][serial] + "?"
     else:
         questionLabel.setForeground(awt.Color.BLACK)
-        questionLabel.text = "What is the value of " + RGB[serial] + "?"
+        questionLabel.text = "What is the value of " + question[choice][serial] + "?"
 
 def startGame(event):
+    gameChoice()
     generateRGB()
     changeProblem()
     global score
@@ -127,6 +128,10 @@ def startGame(event):
     confirmBut.setEnabled(True)
     for i in range(0, 20):
         life[i].setBackground(awt.Color(255, 0, 0))
+
+def gameChoice():
+    global choice
+    choice=gameMode.getSelectedIndex()
 
 def oneRound(event):
     if radioBut1.isSelected() and values[serial] >= 0 and values[serial] <= 60:
