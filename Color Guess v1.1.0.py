@@ -94,8 +94,40 @@ def setComboBox():
 
 def generateRGB():
     global values
-    values = [randint(0, 255), randint(0, 255), randint(0, 255)]
-    colorDisplay.setBackground(awt.Color(values[0], values[1], values[2]))
+    values = [[randint(0, 255), randint(0, 255), randint(0, 255)]]
+    getHSV()
+    colorDisplay.setBackground(awt.Color(values[0][0], values[0][1], values[0][2]))
+
+def getHSV():
+    global values
+    M=-1.0
+    m=300.0
+    MChoice=0
+    for i in range(0, 3):
+        if values[0][i]>M:
+            M=values[0][i]
+            MChoice=i
+        if values[0][i]<m:
+            m=values[0][i]
+    V=M/255.0
+    S=0.0
+    if M>0:
+        S=(M-m)*1.0/M*1.0
+    else:
+        S=0.0
+    H=0.0
+    C=(M-m)
+    if S==0:
+        H=0.0
+    elif MChoice==0:
+        H=(values[0][1]-values[0][2])/C%6
+    elif MChoice==1:
+        H=(values[0][2]-values[0][0])*1.0/C+2
+    elif MChoice==2:
+        H=(values[0][0]-values[0][1])*1.0/C+4
+    H=H*60
+    values.append([H, S, V])
+
 
 def changeProblem():
     question=[["Red", "Green", "Blue"], ["Hue", "Saturation", "Value"]]
