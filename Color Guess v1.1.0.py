@@ -1,6 +1,7 @@
 import javax.swing as swing
 import java.awt as awt
 from random import randint
+from decimal import *
 
 def setButtons():
     global startBut
@@ -18,6 +19,7 @@ def setButtons():
     quitBut = swing.JButton("QUIT!?", actionPerformed=quitGame)
     quitBut.setSize(100, 50)
     quitBut.setLocation(610, 35)
+    quitBut.setEnabled(False)
     c.add(quitBut)
 
 def setLabels():
@@ -60,25 +62,25 @@ def setRadioButtons():
     global butGroup
     butGroup = swing.ButtonGroup()
     global radioBut1
-    radioBut1 = swing.JRadioButton("between 0 and 60")
+    radioBut1 = swing.JRadioButton()
     radioBut1.setSize(270, 20)
     radioBut1.setLocation(120, 210)
     butGroup.add(radioBut1)
     c.add(radioBut1)
     global radioBut2
-    radioBut2 = swing.JRadioButton("between 61 and 120")
+    radioBut2 = swing.JRadioButton()
     radioBut2.setSize(270, 20)
     radioBut2.setLocation(120, 230)
     butGroup.add(radioBut2)
     c.add(radioBut2)
     global radioBut3
-    radioBut3 = swing.JRadioButton("between 121 and 180")
+    radioBut3 = swing.JRadioButton()
     radioBut3.setSize(270, 20)
     radioBut3.setLocation(120, 250)
     butGroup.add(radioBut3)
     c.add(radioBut3)
     global radioBut4
-    radioBut4 = swing.JRadioButton("between 181 and 255")
+    radioBut4 = swing.JRadioButton()
     radioBut4.setSize(270, 20)
     radioBut4.setLocation(120, 270)
     butGroup.add(radioBut4)
@@ -125,12 +127,13 @@ def getHSV():
         H=(values[0][2]-values[0][0])*1.0/C+2
     elif MChoice==2:
         H=(values[0][0]-values[0][1])*1.0/C+4
-    H=H*60
-    values.append([H, S, V])
+    H=H*60/360.0
+    getcontext().prec=3
+    values.append([round(H, 3), round(S, 3), round(V, 3)])
 
 
 def changeProblem():
-    question=[["Red", "Green", "Blue"], ["Hue", "Saturation", "Value"]]
+    question=[["Red", "Green", "Blue"], ["HUE", "SATURATION", "VALUE"]]
     global serial
     global questionLabel
     serial = randint(0, 2)
@@ -158,21 +161,35 @@ def startGame(event):
     score = 0
     startBut.setEnabled(False)
     confirmBut.setEnabled(True)
+    gameMode.setEnabled(False)
+    quitBut.setEnabled(True)
     for i in range(0, 20):
         life[i].setBackground(awt.Color(255, 0, 0))
 
 def gameChoice():
     global choice
     choice=gameMode.getSelectedIndex()
+    options=[["between 0 and 60", "between 61 and 120", "between 121 and 180","between 181 and 255"], ["0<=answer<=0.25", "0.25<answer<=0.5", "0.5<answer<=0.75", "0.75<answer<1"]]
+    radioBut1.setText(options[choice][0])
+    radioBut2.setText(options[choice][1])
+    radioBut3.setText(options[choice][2])
+    radioBut4.setText(options[choice][3])
 
 def oneRound(event):
-    if radioBut1.isSelected() and values[serial] >= 0 and values[serial] <= 60:
+    threshold=[\
+        [\
+            [0, 60], [60, 120], [120, 180], [180, 256]\
+        ],\ 
+        [\
+            [0.0, 0.25], [0.25, 0.5], [0.5, 0.75], [0.75, 1.0]\
+        ]]
+    if radioBut1.isSelected() and values[choice][serial] >= threshold[choice][0][0] and values[choice][serial] <= threshold[choice][0][1]:
         addScore()
-    elif radioBut2.isSelected() and values[serial] > 60 and values[serial] <= 120:
+    elif radioBut2.isSelected() and values[choice][serial] > threshold[choice][1][0] and values[choice][serial] <= threshold[choice][1][1]:
         addScore()
-    elif radioBut3.isSelected() and values[serial] > 120 and values[serial] <= 180:
+    elif radioBut3.isSelected() and values[choice][serial] > threshold[choice][2][0] and values[choice][serial] <= threshold[choice][2][1]:
         addScore()
-    elif radioBut4.isSelected() and values[serial] > 180 and values[serial] <= 255:
+    elif radioBut4.isSelected() and values[choice][serial] > threshold[choice][3][0] and values[choice][serial] < threshold[choice][3][1]:
         addScore()
     else:
         fail()
@@ -181,7 +198,7 @@ def oneRound(event):
 def addScore():
     global score
     score = score + 1
-    gamingProcess.setText("Good for you!! The value is " + str(values[serial]) + "\nScore: " + str(score))
+    gamingProcess.setText("Good for you!! The value is " + str(values[choice][serial]) + "\nScore: " + str(score))
     generateRGB()
     changeProblem()
 
@@ -206,6 +223,8 @@ def gameSummery():
     global score
     confirmBut.setEnabled(False)
     startBut.setEnabled(True)
+    gameMode.setEnabled(True)
+    quitBut.setEnabled(False)
     gamingProcess.setText("GAME OVER\nYou guessed wrong "+str(20-wrongAnswers)+" times\nFinal Score: " + str(score))
 
 def checkProgress():
