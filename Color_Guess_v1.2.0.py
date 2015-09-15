@@ -41,7 +41,7 @@ class Game:
 
     def setTextArea(self):
         self.history = "Welcome to the game!!\nIf you guess incorectly 20 times then the game will end!"
-        self.gamingProcess = swing.JTextArea(history)
+        self.gamingProcess = swing.JTextArea(self.history)
         self.gamingProcess.setSize(310, 60)
         self.gamingProcess.setLocation(220, 35)
         self.gamingProcess.setLineWrap(True)
