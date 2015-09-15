@@ -187,7 +187,7 @@ class Game:
 
     def addScore(self):
         self.score += 1
-        self.gamingProcess.setText("Good for you!! The value is " + str(self.values[self.choice][serial]) + "\nScore: " + str(self.score))
+        self.gamingProcess.setText("Good for you!! The value is " + str(self.values[self.choice][self.serial]) + "\nScore: " + str(self.score))
         self.generateRGB()
         self.changeProblem()
 
