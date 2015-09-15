@@ -231,7 +231,7 @@ def checkProgress():
     if wrongAnswers <= 0:
         gameSummery()
 
-frame = swing.JFrame("Color Guess v1.0.0")
+frame = swing.JFrame("Color Guess v1.1.0")
 c = frame.getContentPane()
 frame.setSize(826, 581)
 c.setLayout(None)
