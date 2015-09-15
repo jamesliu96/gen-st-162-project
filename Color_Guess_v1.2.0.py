@@ -216,4 +216,5 @@ class Game:
         if self.wrongAnswers <= 0:
             self.gameSummary()
 
-game = Game()
+if __name__ == '__main__':
+    game = Game()
