@@ -170,7 +170,7 @@ class Game:
             [
                 [0, 60], [60, 120], [120, 180], [180, 256]
             ], [
-                [0.0, 0.25], [0.25, 0.5], [0.5, 0.75], [0.75, 1.0]
+                [0.0, 0.25], [0.25, 0.5], [0.5, 0.75], [0.75, 1.1]
             ]
         ]
         if self.radioBut1.isSelected() and self.values[self.choice][self.serial] >= self.threshold[self.choice][0][0] and self.values[self.choice][self.serial] <= self.threshold[self.choice][0][1]:
