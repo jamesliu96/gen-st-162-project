@@ -41,7 +41,6 @@ def setTextArea():
     gamingProcess.setBackground(awt.Color(238, 238, 238))
     c.add(gamingProcess)
 
-
 def setPanel():
     global colorDisplay
     colorDisplay = swing.JPanel()
@@ -214,7 +213,6 @@ def fail():
     else:
         gamingProcess.setText("Still wrong, but no points lost!!\nScore: " + str(score))
     life[wrongAnswers].setBackground(awt.Color(238, 238, 238))
-
 
 def quitGame(event):
     gameSummery()
